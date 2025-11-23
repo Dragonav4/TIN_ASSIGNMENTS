@@ -1,0 +1,1 @@
+INSERT INTO genres (name) VALUES('RPG'),('Shooter'),('Puzzle'),('Strategy'),('Indie');

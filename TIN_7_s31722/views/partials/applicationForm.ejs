@@ -1,0 +1,88 @@
+<% if (errors && errors.length) { %>
+    <div class="alert" data-variant="error">
+        <p>Please fix the following issues:</p>
+        <ul>
+            <% errors.forEach(function(error) { %>
+                <li>
+                    <%= error %>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+<% } %>
+
+<form id="applicationForm" method="POST" action="#" class="form">
+    <div class="field">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName"
+               value="<%= (application && application.fullName) ? application.fullName : '' %>" required>
+        <span class="hint">At least 2 words, letters only</span>
+    </div>
+
+    <div class="field">
+        <label for="age">Age *</label>
+        <input type="number" id="age" name="age" min="16" max="65"
+               value="<%= (application && application.age) ? application.age : '' %>" required>
+        <span class="hint">Must be between 16 and 65</span>
+    </div>
+
+    <div class="field">
+        <label for="profession">Profession *</label>
+        <select id="profession" name="profession" required>
+            <option value="">-- Select your profession --</option>
+            <% ['Doctor', 'Engineer', 'Farmer', 'Soldier', 'Programmer', 'Influencer'
+            ].forEach(function(prof) { %>
+                <option value="<%= prof %>" <%= application && application.profession === prof ? 'selected' : '' %>><%= prof %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="field">
+        <label>Health Status *</label>
+        <div class="radio-group">
+            <% ['Healthy', 'Chronic illness', 'Injured'].forEach(function(status) { %>
+                <label class="radio-label">
+                    <input type="radio" name="healthStatus" value="<%= status %>" <%= application &&
+                    application.healthStatus === status ? 'checked' : '' %> required>
+                    <%= status %>
+                </label>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="infectionCode">Infection Code *</label>
+        <input type="text" id="infectionCode" name="infectionCode" placeholder="INF-1234"
+               value="<%= (application && application.infectionCode) ? application.infectionCode : '' %>" required>
+        <span class="hint">Format: INF-#### (4 digits)</span>
+    </div>
+
+    <div class="field">
+        <label class="checkbox-label">
+            <input type="checkbox" name="willingToWork" <%= application && application.willingToWork ? 'checked'
+                    : '' %>>
+            I am willing to work in the bunker
+        </label>
+    </div>
+
+    <div class="row">
+        <button type="submit" class="btn" data-variant="primary">Submit Application</button>
+    </div>
+</form>
+
+<div id="result" class="surface" style="display: none; margin-top: 32px;"></div>
+
+
+<template id="acceptedTemplate">
+    <h2>Application Accepted! :)</h2>
+    <p><strong>Survival Score:</strong> <span class="score"></span></p>
+    <p><strong>Risk Level:</strong> <span class="risk-level"></span></p>
+    <p class="message"></p>
+</template>
+
+<template id="rejectedTemplate">
+    <h2>Application Rejected :(</h2>
+    <p class="score-display"><strong>Survival Score:</strong> <span class="score"></span></p>
+    <ul class="error-list"></ul>
+    <p class="message"></p>
+</template>

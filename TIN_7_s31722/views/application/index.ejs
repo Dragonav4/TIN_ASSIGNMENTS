@@ -1,0 +1,52 @@
+<% const pageTitle = 'Bunker Admission Application'; %>
+
+<%- include('../layouts/header', { title: pageTitle }) %>
+
+<h1>
+    <%= pageTitle %>
+</h1>
+
+<%- include('../partials/applicationForm', { application, errors, }) %>
+
+<div class="status-panel">
+    <h2>Bunker Status Monitor</h2>
+    <div class="status-item">
+        <span class="status-label">Radiation Level:</span>
+        <span id="radiationLevel" class="status-value">--</span>
+    </div>
+    <div class="status-item">
+        <span class="status-label">Zombie Activity:</span>
+        <span id="zombieActivity" class="status-value">--</span>
+    </div>
+    <div class="status-item">
+        <span class="status-label">Temperature:</span>
+        <span id="temperature" class="status-value">--</span>
+    </div>
+    <hr>
+    <div class="status-item">
+        <span class="status-label">Water:</span>
+        <span id="water" class="status-value">--</span>
+    </div>
+    <div class="status-item">
+        <span class="status-label">Food:</span>
+        <span id="food" class="status-value">--</span>
+    </div>
+    <div class="status-item">
+        <span class="status-label">Power:</span>
+        <span id="power" class="status-value">--</span>
+    </div>
+    <hr>
+    <div class="event-box">
+        <strong>Latest Event:</strong>
+        <p id="event">--</p>
+    </div>
+    <div class="timestamp">
+        Last updated: <span id="timestamp">--</span>
+    </div>
+</div>
+
+<script src="/static/form-validation.js"></script>
+<script src="/static/form-submission.js"></script>
+<script src="/static/status.js"></script>
+
+<%- include('../layouts/footer') %>

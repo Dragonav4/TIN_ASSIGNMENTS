@@ -1,0 +1,66 @@
+<%
+const pageTitle = 'Game backlog';
+
+const genres = locals.genres || [];
+const genresMap = {};
+
+genres.forEach((genre) => {
+    genresMap[genre.id] = genre.name;
+});
+
+const hasGames = Array.isArray(games) && games.length > 0;
+%>
+
+<%- include('../layouts/header', { title: pageTitle }) %>
+
+<div class="row" data-justify="between" data-spacing="page">
+    <h1><%= pageTitle %></h1>
+    <a href="/games/new" class="btn" data-variant="primary">Add game</a>
+</div>
+
+<% if (!hasGames) { %>
+    <div class="surface" data-tone="muted">
+        <p>No games yet. Click “Add game” to create the first one.</p>
+    </div>
+<% } else { %>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Platform</th>
+            <th>Status</th>
+            <th>Genre</th>
+            <th>Rating</th>
+            <th colspan="2" data-align="center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% let counter =1;%>
+        <% games.forEach((game) => { %>
+            <tr>
+                <td>#<%= counter++ %></td>
+                <td><%= game.title %></td>
+                <td><%= game.platform %></td>
+                <td>
+                    <% if (game.status) { %>
+                        <span class="badge" data-status="<%= game.status %>">
+                            <%= game.status %>
+                        </span>
+                    <% } %>
+                </td>
+                <td><%= genresMap[game.genre_id] || '—' %></td>
+                <td><%= game.rating == null ? '—' : game.rating %></td>
+                <td data-align="center" data-role="actions">
+                    <a href="/games/<%= game.id %>/edit" class="btn" data-size="small">Edit</a>
+                </td>
+                <td data-align="center" data-role="actions">
+                    <a href="/games/<%= game.id %>/delete" class="btn" data-size="small" data-variant="danger">Delete</a>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+<% } %>
+
+<%- include('../layouts/footer') %>

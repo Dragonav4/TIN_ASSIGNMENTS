@@ -1,0 +1,45 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+
+# Node / npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json*
+.pnpm-store/
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Coverage / build
+coverage/
+.dist/
+dist/
+build/
+.tmp/
+.temp/
+
+# VS Code
+.vscode/
+.history/
+
+# JetBrains
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db

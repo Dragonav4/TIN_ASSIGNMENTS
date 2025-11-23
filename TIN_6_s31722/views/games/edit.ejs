@@ -1,0 +1,18 @@
+<%
+const pageTitle = 'Edit game';
+const formActionUrl = `/games/${game.id}/edit`;
+%>
+
+<%- include('../layouts/header', { title: pageTitle }) %>
+
+<h1><%= pageTitle %></h1>
+
+<%- include('../partials/gameForm',
+{
+    actionUrl: formActionUrl,
+    submitLabel: 'Save changes',
+    game,
+    errors,
+}) %>
+
+<%- include('../layouts/footer') %>

@@ -1,0 +1,38 @@
+<% const pageTitle = status === 'accepted' ? 'Application Accepted :)' : 'Application Rejected :('; %>
+
+<%- include('../layouts/header', { title: pageTitle }) %>
+
+<h1>
+    <%= pageTitle %>
+</h1>
+
+<% if (status === 'accepted' ) { %>
+    <div class="surface" data-tone="success">
+        <h2>Congratulations!</h2>
+        <p><strong>Survival Score:</strong>
+            <%= score %>
+        </p>
+        <p><strong>Risk Level:</strong>
+            <%= riskLevel %>
+        </p>
+        <p>
+            <%= message %>
+        </p>
+    </div>
+<% } else { %>
+    <div class="surface" data-tone="danger">
+        <h2>Application Rejected</h2>
+        <p><strong>Survival Score:</strong>
+            <%= score %>
+        </p>
+        <p>
+            <%= message %>
+        </p>
+    </div>
+<% } %>
+
+<div class="row" style="margin-top: 2rem;">
+    <a href="/application" class="btn" data-variant="primary">Back to Application</a>
+</div>
+
+<%- include('../layouts/footer') %>
